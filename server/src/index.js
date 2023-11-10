@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const userRouter = require('./routes/userRouter');
 
 dotenv.config({ path: './config.env' });
 
@@ -13,6 +14,8 @@ const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD,
 );
+
+app.use('/api/v1/users', userRouter);
 
 mongoose.connect(DB).then(() => {
   console.log('DB connection established');
