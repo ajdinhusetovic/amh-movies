@@ -5,6 +5,10 @@ const AppError = require('../utils/appError');
 exports.getAllUsers = asyncHandler(async (req, res, next) => {
   const users = await User.find();
 
+  if (users.length === 0) {
+    return next(new AppError('No users', 404));
+  }
+
   res.status(200).json({
     status: 'success',
     results: users.length,
