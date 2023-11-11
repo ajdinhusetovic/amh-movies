@@ -4,10 +4,12 @@ const dotenv = require('dotenv');
 const userRouter = require('./routes/userRouter');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
+const cors = require('cors');
 
 dotenv.config({ path: './config.env' });
 
 const app = express();
+app.use(cors());
 
 // Enables receiving JSON in request
 app.use(express.json());

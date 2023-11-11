@@ -6,7 +6,7 @@ exports.getAllUsers = asyncHandler(async (req, res, next) => {
   const users = await User.find();
 
   if (users.length === 0) {
-    return next(new AppError('No users', 404));
+    return res.status(404).json({ status: 'fail', message: 'No users found' });
   }
 
   res.status(200).json({
@@ -20,7 +20,6 @@ exports.getAllUsers = asyncHandler(async (req, res, next) => {
 
 exports.getUser = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.params.id);
-
   if (!user) {
     return next(new AppError('No user found with that ID', 404));
   }
