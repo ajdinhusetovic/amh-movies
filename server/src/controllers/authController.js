@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler');
 const AppError = require('../utils/appError');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { promisify } = require('util');
 
 exports.signup = asyncHandler(async (req, res, next) => {
   const { username } = req.body;
@@ -18,7 +19,6 @@ exports.signup = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     status: 'success',
-    token,
     data: {
       user: newUser,
     },
@@ -56,4 +56,33 @@ exports.signIn = asyncHandler(async (req, res, next) => {
     token,
     userID: user._id,
   });
+});
+
+exports.protect = asyncHandler(async (req, res, next) => {
+  let token;
+  // 1) Get token and check if it's there
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    token = req.headers.authorization.split(' ')[1];
+  }
+
+  if (!token) {
+    return next(new AppError('You are not logged in.', 401));
+  }
+
+  // 2) Verification token
+  const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+  console.log(decoded.id);
+
+  // 3) Check if user still exists
+  const freshUser = await User.findById(decoded.id);
+  if (!freshUser) {
+    return next(
+      new AppError('The user belonging to this token no longer exists.', 401),
+    );
+  }
+  console.log(freshUser);
+  next();
 });
