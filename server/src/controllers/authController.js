@@ -74,7 +74,6 @@ exports.protect = asyncHandler(async (req, res, next) => {
 
   // 2) Verification token
   const decoded = await jwt.verify(token, process.env.JWT_SECRET);
-  console.log(decoded.id);
 
   // 3) Check if user still exists
   const freshUser = await User.findById(decoded.id);
@@ -83,6 +82,5 @@ exports.protect = asyncHandler(async (req, res, next) => {
       new AppError('The user belonging to this token no longer exists.', 401),
     );
   }
-  console.log(freshUser);
   next();
 });
