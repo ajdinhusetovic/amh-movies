@@ -9,6 +9,9 @@ router
   .get(movieController.getAllMovies)
   .post(movieController.createMovie);
 
-router.route('/:id').get(movieController.getMovie);
+router
+  .route('/:id')
+  .get(movieController.getMovie)
+  .delete(movieController.deleteMovie);
 
 module.exports = router;
