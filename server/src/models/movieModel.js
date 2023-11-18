@@ -30,7 +30,13 @@ const movieSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  // slug (IMPORTANT!!! install slugify)
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
 module.exports = Movie;
+
+// movieSchema.pre('save', function (next) {
+//   this.slug = slugify(this.title);
+//   next();
+// });
