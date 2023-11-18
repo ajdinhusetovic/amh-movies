@@ -2,6 +2,16 @@ const Movie = require('../models/movieModel');
 const asyncHandler = require('express-async-handler');
 const AppError = require('../utils/appError');
 
+exports.getAllMovies = asyncHandler(async (req, res, next) => {
+  const movies = await Movie.find();
+
+  res.status(200).json({
+    status: 'sucess',
+    results: movies.length,
+    movies,
+  });
+});
+
 exports.createMovie = asyncHandler(async (req, res, next) => {
   const { title } = req.body;
 

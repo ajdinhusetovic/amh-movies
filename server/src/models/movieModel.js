@@ -26,6 +26,10 @@ const movieSchema = mongoose.Schema({
     enum: ['action', 'comedy', 'horror', 'drama', 'animation', 'other'],
     default: 'other',
   },
+  isWatched: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
