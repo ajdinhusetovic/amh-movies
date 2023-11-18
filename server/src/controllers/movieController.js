@@ -12,6 +12,15 @@ exports.getAllMovies = asyncHandler(async (req, res, next) => {
   });
 });
 
+exports.getMovie = asyncHandler(async (req, res, next) => {
+  const movie = await Movie.findById(req.params.id);
+
+  res.status(200).json({
+    status: 'sucess',
+    movie,
+  });
+});
+
 exports.createMovie = asyncHandler(async (req, res, next) => {
   const { title } = req.body;
 
