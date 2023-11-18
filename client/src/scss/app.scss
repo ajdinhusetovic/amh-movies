@@ -1,0 +1,68 @@
+@use './config';
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    font-size: 16px;
+    font-family: config.$font-open-sans;
+    line-height: 1.5;
+}
+
+#root {
+    height: 100%;
+}
+
+.App {
+    height: 100%;
+}
+
+.form-page {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .login, .register {
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        form {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                margin-top: 20px;
+
+                label {
+                    font-size: 1.5rem;
+                }
+
+                input {
+                    width: 100%;
+                    padding: 8px;
+                    border-radius: 8px;
+                    border: 1px solid black;
+                }
+            }
+
+            button {
+                margin-top: 14px;
+                padding: 8px;
+                width: 120px;
+                border: 1px solid black;
+                border-radius: 8px;
+            }
+        }
+    }
+}

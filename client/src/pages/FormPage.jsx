@@ -5,6 +5,7 @@ const FormPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -18,6 +19,7 @@ const FormPage = () => {
       alert('Registration completed');
     } catch (error) {
       console.log(error);
+      setErrorMessage(error.response.data.message);
     }
   };
 
@@ -34,12 +36,38 @@ const FormPage = () => {
       console.log(res.data.token);
     } catch (error) {
       console.log(error);
+      setErrorMessage(error.response.data.message);
     }
   };
 
   return (
-    <div>
+    <div className="form-page">
+      <div className="login">
+        <h1>Log In</h1>
+        <form onSubmit={handleLogin}>
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button type="submit">Log in</button>
+        </form>
+      </div>
       <div className="register">
+        <h1>Create an account</h1>
         <form onSubmit={handleRegister}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -69,29 +97,6 @@ const FormPage = () => {
             />
           </div>
           <button type="submit">Create account</button>
-        </form>
-      </div>
-      <div className="login">
-        <form onSubmit={handleLogin}>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <button type="submit">Log in</button>
         </form>
       </div>
     </div>
