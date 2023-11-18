@@ -21,6 +21,7 @@ const movieSchema = mongoose.Schema({
     max: [10, 'Rating must be below or equal to 10'],
   },
   category: {
+    type: String,
     required: [true, 'Movie must have a category'],
     enum: ['action', 'comedy', 'horror', 'drama', 'animation', 'other'],
     default: 'other',
