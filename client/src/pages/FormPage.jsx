@@ -6,7 +6,7 @@ const FormPage = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
     try {
@@ -21,38 +21,79 @@ const FormPage = () => {
     }
   };
 
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post('http://localhost:3000/api/v1/users/login', {
+        username,
+        password,
+      });
+
+      alert('Succesfully logged in');
+      console.log(res.data.token);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="passwordConfirm">Confirm Password</label>
-          <input
-            type="passwordConfirm"
-            id="password-confirm"
-            name="passwordConfirm"
-            onChange={(e) => setPasswordConfirm(e.target.value)}
-          />
-        </div>
-        <button type="submit">SUBMIT</button>
-      </form>
+      <div className="register">
+        <form onSubmit={handleRegister}>
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="passwordConfirm">Confirm Password</label>
+            <input
+              type="passwordConfirm"
+              id="password-confirm"
+              name="passwordConfirm"
+              onChange={(e) => setPasswordConfirm(e.target.value)}
+            />
+          </div>
+          <button type="submit">Create account</button>
+        </form>
+      </div>
+      <div className="login">
+        <form onSubmit={handleLogin}>
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button type="submit">Log in</button>
+        </form>
+      </div>
     </div>
   );
 };
