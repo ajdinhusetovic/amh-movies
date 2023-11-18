@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const userRouter = require('./routes/userRouter');
+const movieRouter = require('./routes/movieRouter');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const cors = require('cors');
@@ -20,6 +21,7 @@ const DB = process.env.DATABASE.replace(
 );
 
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/movies', movieRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
