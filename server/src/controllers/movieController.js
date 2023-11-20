@@ -61,3 +61,16 @@ exports.deleteMovie = asyncHandler(async (req, res, next) => {
     status: 'success',
   });
 });
+
+exports.updateMovie = asyncHandler(async (req, res, next) => {
+  const { slug } = req.params;
+  const movie = await Movie.findOneAndUpdate({ slug }, req.body, {
+    runValidators: true,
+  });
+
+  if (!movie) {
+    return next(new AppError('No movie found', 409));
+  }
+
+  res.status(200).json({ message: 'success', movie });
+});

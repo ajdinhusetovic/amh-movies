@@ -43,5 +43,17 @@ movieSchema.pre('save', function (next) {
   next();
 });
 
+// Updates the slug automatically when user updates title
+movieSchema.pre('findOneAndUpdate', async function () {
+  const docToUpdate = await this.model.findOne(this.getQuery());
+  if (
+    this._update.title &&
+    docToUpdate &&
+    this._update.title !== docToUpdate.title
+  ) {
+    this._update.slug = slugify(this._update.title, { lower: true });
+  }
+});
+
 const Movie = mongoose.model('Movie', movieSchema);
 module.exports = Movie;

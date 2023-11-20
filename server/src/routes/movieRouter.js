@@ -12,6 +12,7 @@ router
 router
   .route('/:slug')
   .get(movieController.getMovie)
+  .patch(movieController.updateMovie)
   .delete(movieController.deleteMovie);
 
 module.exports = router;
