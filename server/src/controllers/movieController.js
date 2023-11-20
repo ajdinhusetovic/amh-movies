@@ -17,7 +17,8 @@ exports.getAllMovies = asyncHandler(async (req, res, next) => {
 });
 
 exports.getMovie = asyncHandler(async (req, res, next) => {
-  const movie = await Movie.findById(req.params.id);
+  const { slug } = req.params;
+  const movie = await Movie.findOne({ slug });
 
   if (!movie) {
     return next(new AppError('No movie found with that ID', 404));
@@ -49,7 +50,8 @@ exports.createMovie = asyncHandler(async (req, res, next) => {
 });
 
 exports.deleteMovie = asyncHandler(async (req, res, next) => {
-  const movie = await Movie.findByIdAndDelete(req.params.id);
+  const { slug } = req.params;
+  const movie = await Movie.deleteOne({ slug });
 
   if (!movie) {
     return next(new AppError('No movie found with that ID', 404));

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const movieSchema = mongoose.Schema({
   title: {
@@ -30,13 +31,17 @@ const movieSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  // slug (IMPORTANT!!! install slugify)
+  slug: {
+    type: String,
+    unique: true,
+    index: true,
+  },
+});
+
+movieSchema.pre('save', function (next) {
+  this.slug = slugify(this.title, { lower: true });
+  next();
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
 module.exports = Movie;
-
-// movieSchema.pre('save', function (next) {
-//   this.slug = slugify(this.title);
-//   next();
-// });

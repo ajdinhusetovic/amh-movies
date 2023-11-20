@@ -10,7 +10,7 @@ router
   .post(movieController.createMovie);
 
 router
-  .route('/:id')
+  .route('/:slug')
   .get(movieController.getMovie)
   .delete(movieController.deleteMovie);
 
