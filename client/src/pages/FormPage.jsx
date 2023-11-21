@@ -2,43 +2,89 @@ import { useState } from 'react';
 import axios from 'axios';
 
 const FormPage = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [loginUsername, setLoginUsername] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+  const [registerUsername, setRegisterUsername] = useState('');
+  const [registerPassword, setRegisterPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [registerErrorMessage, setRegisterErrorMessage] = useState('');
   const [loginErrorMessage, setLoginErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const emptyRegisterFields = () => {
+    if (
+      registerUsername === '' ||
+      registerPassword === '' ||
+      passwordConfirm === ''
+    ) {
+      setRegisterErrorMessage('Missing fields!');
+    }
+  };
+
+  const shortPasswordError = () => {
+    if (registerPassword.length >= 1 && registerPassword.length < 8) {
+      setRegisterErrorMessage('Password too short. Minimum 8 characters');
+    }
+  };
+
+  const passwordMatch = () => {
+    if (registerPassword !== passwordConfirm) {
+      setRegisterErrorMessage('Passwords do not match');
+    }
+  };
+
+  const shortUsername = () => {
+    if (registerUsername.length >= 1 && registerUsername.length < 3) {
+      setRegisterErrorMessage('Username must be 3 or more characters long');
+    }
+  };
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       await axios.post('http://localhost:3000/api/v1/users/register', {
-        username,
-        password,
+        username: registerUsername,
+        password: registerPassword,
         passwordConfirm,
       });
       setRegisterErrorMessage('');
       alert('Registration completed');
+      setRegisterUsername('');
+      setRegisterPassword('');
+      setPasswordConfirm('');
     } catch (error) {
       console.log(error);
       setRegisterErrorMessage(error.response.data.message);
+      shortPasswordError();
+      passwordMatch();
+      shortUsername();
+      emptyRegisterFields();
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const res = await axios.post('http://localhost:3000/api/v1/users/login', {
-        username,
-        password,
+        username: loginUsername,
+        password: loginPassword,
       });
       setLoginErrorMessage('');
       alert('Succesfully logged in');
       console.log(res.data.token);
+      setLoginUsername('');
+      setLoginPassword('');
     } catch (error) {
       console.log(error);
       setLoginErrorMessage(error.response.data.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -53,7 +99,8 @@ const FormPage = () => {
               type="text"
               id="username"
               name="username"
-              onChange={(e) => setUsername(e.target.value)}
+              value={loginUsername}
+              onChange={(e) => setLoginUsername(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -62,7 +109,8 @@ const FormPage = () => {
               type="password"
               id="password"
               name="password"
-              onChange={(e) => setPassword(e.target.value)}
+              value={loginPassword}
+              onChange={(e) => setLoginPassword(e.target.value)}
             />
           </div>
           {loginErrorMessage && (
@@ -70,6 +118,7 @@ const FormPage = () => {
           )}
           <button type="submit">Log in</button>
         </form>
+        {isLoading && <div className="spinner"></div>}
       </div>
       <div className="register">
         <h1>Create an account</h1>
@@ -80,7 +129,7 @@ const FormPage = () => {
               type="text"
               id="username"
               name="username"
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setRegisterUsername(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -89,7 +138,7 @@ const FormPage = () => {
               type="password"
               id="password"
               name="password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setRegisterPassword(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -106,6 +155,7 @@ const FormPage = () => {
           )}
           <button type="submit">Create account</button>
         </form>
+        {isLoading && <div className="spinner"></div>}
       </div>
     </div>
   );

@@ -27,13 +27,29 @@ body {
     justify-content: space-evenly;
 
     .login, .register {
-        height: 600px;
-        width: 400px;
+        height: 700px;
+        width: 500px;
         display: flex;
         flex-direction: column;
         align-items: center;
         background-color: config.$lighter-dark;
         border-radius: 8px;
+
+        .spinner {
+            margin-top: 30px;
+            border: 4px solid config.$dark-color;
+            border-left: 4px solid lighten(config.$lighter-dark, 10%);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+          }
+          
+          @keyframes spin {
+            to {
+              transform: rotate(360deg);
+            }
+          }
 
         h1 {
             font-size: 2.3rem;
@@ -47,6 +63,11 @@ body {
             justify-content: center;
             margin-top: 40px;
             width: 100%;
+
+            .error-msg {
+                color: red;
+                padding: 10px;
+            }
 
 
             .form-group {
