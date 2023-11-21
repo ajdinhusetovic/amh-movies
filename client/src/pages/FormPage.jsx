@@ -9,7 +9,8 @@ const FormPage = () => {
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [registerErrorMessage, setRegisterErrorMessage] = useState('');
   const [loginErrorMessage, setLoginErrorMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
+  const [registerLoading, setRegisterLoading] = useState(false);
 
   const emptyRegisterFields = () => {
     if (
@@ -41,7 +42,7 @@ const FormPage = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
+    setRegisterLoading(true);
 
     try {
       await axios.post('http://localhost:3000/api/v1/users/register', {
@@ -62,13 +63,13 @@ const FormPage = () => {
       shortUsername();
       emptyRegisterFields();
     } finally {
-      setIsLoading(false);
+      setRegisterLoading(false);
     }
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
+    setLoginLoading(true);
 
     try {
       const res = await axios.post('http://localhost:3000/api/v1/users/login', {
@@ -84,7 +85,7 @@ const FormPage = () => {
       console.log(error);
       setLoginErrorMessage(error.response.data.message);
     } finally {
-      setIsLoading(false);
+      setLoginLoading(false);
     }
   };
 
@@ -118,7 +119,7 @@ const FormPage = () => {
           )}
           <button type="submit">Log in</button>
         </form>
-        {isLoading && <div className="spinner"></div>}
+        {loginLoading && <div className="spinner"></div>}
       </div>
       <div className="register">
         <h1>Create an account</h1>
@@ -155,7 +156,7 @@ const FormPage = () => {
           )}
           <button type="submit">Create account</button>
         </form>
-        {isLoading && <div className="spinner"></div>}
+        {registerLoading && <div className="spinner"></div>}
       </div>
     </div>
   );
