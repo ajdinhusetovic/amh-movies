@@ -5,7 +5,8 @@ const FormPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [registerErrorMessage, setRegisterErrorMessage] = useState('');
+  const [loginErrorMessage, setLoginErrorMessage] = useState('');
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -16,10 +17,11 @@ const FormPage = () => {
         password,
         passwordConfirm,
       });
+      setRegisterErrorMessage('');
       alert('Registration completed');
     } catch (error) {
       console.log(error);
-      setErrorMessage(error.response.data.message);
+      setRegisterErrorMessage(error.response.data.message);
     }
   };
 
@@ -31,12 +33,12 @@ const FormPage = () => {
         username,
         password,
       });
-
+      setLoginErrorMessage('');
       alert('Succesfully logged in');
       console.log(res.data.token);
     } catch (error) {
       console.log(error);
-      setErrorMessage(error.response.data.message);
+      setLoginErrorMessage(error.response.data.message);
     }
   };
 
@@ -63,6 +65,9 @@ const FormPage = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          {loginErrorMessage && (
+            <p className="error-msg">{loginErrorMessage}</p>
+          )}
           <button type="submit">Log in</button>
         </form>
       </div>
@@ -96,6 +101,9 @@ const FormPage = () => {
               onChange={(e) => setPasswordConfirm(e.target.value)}
             />
           </div>
+          {registerErrorMessage && (
+            <p className="error-msg">{registerErrorMessage}</p>
+          )}
           <button type="submit">Create account</button>
         </form>
       </div>

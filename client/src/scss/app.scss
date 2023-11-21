@@ -9,15 +9,9 @@ body {
     height: 100vh;
     font-size: 16px;
     font-family: config.$font-open-sans;
+    color: config.$text-light;
     line-height: 1.5;
-}
-
-#root {
-    height: 100%;
-}
-
-.App {
-    height: 100%;
+    background-color: config.$dark-color;
 }
 
 .navbar {
@@ -28,20 +22,22 @@ body {
 }
 
 .form-page {
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 
     .login, .register {
-        height: 80%;
+        height: 600px;
         width: 400px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        background-color: config.$lighter-dark;
+        border-radius: 8px;
 
         h1 {
             font-size: 2.3rem;
+            padding-top: 30px;
         }
 
         form {
@@ -61,23 +57,27 @@ body {
 
                 label {
                     font-size: 1.5rem;
-                    padding: 4px;
+                    padding: 8px;
                 }
 
                 input {
                     padding: 8px;
                     border-radius: 8px;
-                    border: 1px solid black;
+                    border: none;
                     font-size: 1.2rem;
                 }
             }
 
             button {
-                margin-top: 14px;
-                padding: 8px;
-                width: 120px;
+                margin-top: 24px;
+                padding: 10px;
+                width: 150px;
+                background-color: config.$gold-color;
+                color: config.$dark-color;
                 border: 1px solid black;
                 border-radius: 8px;
+                font-size: 1rem;
+                cursor: pointer;
             }
         }
     }
