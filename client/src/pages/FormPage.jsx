@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const FormPage = () => {
   const [loginUsername, setLoginUsername] = useState('');
@@ -11,6 +13,9 @@ const FormPage = () => {
   const [loginErrorMessage, setLoginErrorMessage] = useState('');
   const [loginLoading, setLoginLoading] = useState(false);
   const [registerLoading, setRegisterLoading] = useState(false);
+  const [_, setCookies] = useCookies(['access_token']);
+
+  const navigate = useNavigate();
 
   const emptyRegisterFields = () => {
     if (
@@ -76,9 +81,9 @@ const FormPage = () => {
         username: loginUsername,
         password: loginPassword,
       });
+      setCookies('access_token', res.data.token);
+      navigate('/movies');
       setLoginErrorMessage('');
-      alert('Succesfully logged in');
-      console.log(res.data.token);
       setLoginUsername('');
       setLoginPassword('');
     } catch (error) {
