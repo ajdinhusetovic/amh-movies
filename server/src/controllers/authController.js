@@ -37,14 +37,14 @@ exports.signIn = asyncHandler(async (req, res, next) => {
 
   // Check if user exists
   if (!user) {
-    return next(new AppError('User does not exist', 404));
+    return next(new AppError('Incorrect username/password', 404));
   }
 
   const isPasswordValid = await bcrypt.compare(password, user.password);
 
   // Check if entered password is valid
   if (!isPasswordValid) {
-    return next(new AppError('Invalid password', 400));
+    return next(new AppError('Incorrect username/password', 400));
   }
 
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
