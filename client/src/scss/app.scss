@@ -103,3 +103,27 @@ body {
         }
     }
 }
+
+
+.modal-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    padding: 10px;
+    border-radius: 6px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto;
+    background-color: config.$lighter-dark;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .modal {
+      max-width: 95%;
+      max-height: 95%;
+      padding: 8px;
+    }
+  }
