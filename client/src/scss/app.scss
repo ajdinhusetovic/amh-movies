@@ -104,6 +104,28 @@ body {
     }
 }
 
+.movie-form-wrapper {
+    .form-group {
+        margin-top: 20px;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+
+        label {
+            font-size: 1.5rem;
+            padding: 8px;
+        }
+
+        input {
+            padding: 8px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+    }
+}
+
 
 .modal-overlay {
     display: flex;
@@ -112,12 +134,18 @@ body {
   }
   
   .modal {
+    width: 500px;
     padding: 10px;
     border-radius: 6px;
     max-width: 90%;
     max-height: 90%;
     overflow: auto;
     background-color: config.$lighter-dark;
+
+    .modal-content {
+        width: 90%;
+        margin: 0 auto;
+    }
   }
   
   @media screen and (max-width: 768px) {

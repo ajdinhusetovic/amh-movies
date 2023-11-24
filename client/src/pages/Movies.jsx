@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Modal from '../components/Modal';
+import CreateMovieForm from '../components/CreateMovieForm';
+import '../scss/app.scss';
 
 const Test = () => {
   const [cookies, _] = useCookies(['access_token']);
@@ -26,17 +28,16 @@ const Test = () => {
     <div>
       {!isModalOpen && (
         <div>
+          <button onClick={toggleModal}>Open Modal</button>
           <h1>Main Content</h1>
           <p>Other content on the page</p>
-          <button onClick={toggleModal}>Open Modal</button>
         </div>
       )}
 
       {/* Render only the modal when it is open */}
       {isModalOpen && (
         <Modal isOpen={isModalOpen} toggleModal={toggleModal}>
-          <h2>Modal Content</h2>
-          <p>This is the content of the modal.</p>
+          <CreateMovieForm />
         </Modal>
       )}
     </div>
