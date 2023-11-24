@@ -105,23 +105,50 @@ body {
 }
 
 .movie-form-wrapper {
-    .form-group {
-        margin-top: 20px;
-        width: 70%;
-        display: flex;
-        flex-direction: column;
 
-        label {
-            font-size: 1.5rem;
-            padding: 8px;
+    h1 {
+        text-align: center;
+        margin: 60px 0 20px 0;
+    }
+
+
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        padding-bottom: 60px;
+
+        button {
+            padding: 10px;
+            margin-top: 30px;
+            width: 120px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            background-color: config.$gold-color;
+            color: config.$dark-color;
+            cursor: pointer;
         }
 
-        input {
-            padding: 8px;
-            border-radius: 8px;
-            border: none;
-            font-size: 1.2rem;
-            font-style: italic;
+        .form-group {
+            margin-top: 20px;
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+    
+            label {
+                font-size: 1.5rem;
+                padding: 8px;
+            }
+    
+            input, select {
+                padding: 8px;
+                border-radius: 8px;
+                border: none;
+                font-size: 1.2rem;
+            }
         }
     }
 }
@@ -135,12 +162,27 @@ body {
   
   .modal {
     width: 500px;
-    padding: 10px;
     border-radius: 6px;
     max-width: 90%;
     max-height: 90%;
     overflow: auto;
     background-color: config.$lighter-dark;
+
+    .close-button {
+        float: right;
+        margin: 8px;
+        padding: 10px;
+        border: none;
+        border-radius: 50%;
+        background-color: transparent;
+        font-size: 18px;
+        cursor: pointer;
+        color: config.$text-light;
+
+        &:hover {
+            background-color: config.$dark-color;
+        }
+    }
 
     .modal-content {
         width: 90%;

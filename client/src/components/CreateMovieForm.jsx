@@ -1,7 +1,7 @@
 const CreateMovieForm = () => {
   return (
     <div className="movie-form-wrapper">
-      <h1>Create new movie</h1>
+      <h1>Add new movie</h1>
       <form>
         <div className="form-group">
           <label htmlFor="title">Title</label>
@@ -35,6 +35,20 @@ const CreateMovieForm = () => {
             <option value="Other">Other</option>
           </select>
         </div>
+        <div className="form-group">
+          <label htmlFor="length">IMDb Rating</label>
+          <input
+            type="number"
+            min="0"
+            max="10"
+            placeholder="e.g. 5.4"
+            step="0.1"
+            id="movie-length"
+            name="length"
+          />
+        </div>
+
+        <button type="submit">Add movie</button>
       </form>
     </div>
   );
