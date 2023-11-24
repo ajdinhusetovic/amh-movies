@@ -8,13 +8,14 @@ const Test = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // look up explanation details
   useEffect(() => {
     if (location.pathname === '/movies' && !cookies.access_token) {
       navigate('/');
     }
   }, [cookies.access_token, navigate, location.pathname]);
 
-  return <div>{cookies.access_token}</div>;
+  return <div>movies</div>;
 };
 
 export default Test;
