@@ -37,7 +37,7 @@ const Test = () => {
       {/* Render only the modal when it is open */}
       {isModalOpen && (
         <Modal isOpen={isModalOpen} toggleModal={toggleModal}>
-          <CreateMovieForm />
+          <CreateMovieForm toggleModal={toggleModal} />
         </Modal>
       )}
     </div>
