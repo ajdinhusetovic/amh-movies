@@ -36,6 +36,10 @@ const movieSchema = mongoose.Schema({
     unique: true,
     index: true,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 movieSchema.pre('save', function (next) {
