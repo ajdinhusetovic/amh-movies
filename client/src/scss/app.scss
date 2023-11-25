@@ -66,7 +66,7 @@ body {
 
             .error-msg {
                 color: red;
-                padding: 10px;
+                padding: 15px 0 0 8px;
             }
 
 
@@ -119,6 +119,11 @@ body {
         flex-direction: column;
         width: 100%;
         padding-bottom: 60px;
+
+        .error-msg {
+            color: red;
+            padding: 15px 0 0 8px;
+        }
 
         button {
             padding: 10px;

@@ -9,6 +9,18 @@ const CreateMovieForm = ({ toggleModal }) => {
   const [category, setCategory] = useState('other');
   const [imdbRating, setImdbRating] = useState(0);
 
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handleMovieError = () => {
+    if (title === '') {
+      setErrorMsg('Movie must have title');
+    }
+
+    if (length <= 0) {
+      setErrorMsg('Length must be above 0');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,6 +37,7 @@ const CreateMovieForm = ({ toggleModal }) => {
       });
       toggleModal();
     } catch (error) {
+      handleMovieError();
       console.log(error);
     }
   };
@@ -75,7 +88,7 @@ const CreateMovieForm = ({ toggleModal }) => {
           <label htmlFor="imdb-rating">IMDb Rating</label>
           <input
             type="number"
-            min="0"
+            min="1"
             max="10"
             placeholder="e.g. 5.4"
             step="0.1"
@@ -85,7 +98,7 @@ const CreateMovieForm = ({ toggleModal }) => {
             onChange={(e) => setImdbRating(e.target.value)}
           />
         </div>
-
+        {errorMsg && <p className="error-msg">{errorMsg}</p>}
         <button type="submit">Add movie</button>
       </form>
     </div>
