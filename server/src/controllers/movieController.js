@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const AppError = require('../utils/appError');
 
 exports.getAllMovies = asyncHandler(async (req, res, next) => {
-  const movies = await Movie.find();
+  const movies = await Movie.find().sort({ createdAt: -1 });
 
   if (movies.length === 0) {
     return next(new AppError('No movies found', 404));
