@@ -5,16 +5,19 @@ const movieSchema = mongoose.Schema({
   title: {
     type: String,
     required: [true, 'Movie must have a title'],
+    minLength: [1, 'Movie title must be above 0 characters'],
   },
   //   img
   length: {
     type: Number,
     required: [true, 'Movie must have length'],
+    min: [1, 'Movie length must be above 0'],
   },
   //   actors
   imdbRating: {
     type: Number,
     required: [true, 'Movie must have imdb rating'],
+    min: [1, 'Rating must be 1 or equal'],
   },
   amhRating: {
     type: Number,
