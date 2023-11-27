@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
+import MovieCard from './MovieCard';
 
 const MoviesList = () => {
   const query = useQuery({
@@ -14,7 +15,7 @@ const MoviesList = () => {
   return (
     <div>
       {query.data.movies.map((movie) => {
-        return <h1>movie</h1>;
+        return <MovieCard movie={movie} />;
       })}
     </div>
   );
