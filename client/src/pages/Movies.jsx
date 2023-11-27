@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useNavigate, useLocation } from 'react-router-dom';
+import '../scss/app.scss';
 import Modal from '../components/Modal';
 import CreateMovieForm from '../components/CreateMovieForm';
-import '../scss/app.scss';
+import MoviesList from '../components/MoviesList';
 
 const Test = () => {
   const [cookies, _] = useCookies(['access_token']);
@@ -29,8 +30,7 @@ const Test = () => {
       {!isModalOpen && (
         <div>
           <button onClick={toggleModal}>Open Modal</button>
-          <h1>Main Content</h1>
-          <p>Other content on the page</p>
+          <MoviesList />
         </div>
       )}
 

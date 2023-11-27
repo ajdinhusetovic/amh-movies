@@ -4,18 +4,23 @@ import Navbar from './components/Navbar';
 import FormPage from './pages/FormPage';
 import Movies from './pages/Movies';
 import { ToastContainer } from 'react-toastify';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function App() {
+  const client = new QueryClient();
+
   return (
     <div className="App">
-      <Router>
-        <ToastContainer />
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<FormPage />} />
-          <Route path="/movies" element={<Movies />} />
-        </Routes>
-      </Router>
+      <QueryClientProvider client={client}>
+        <Router>
+          <ToastContainer />
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<FormPage />} />
+            <Route path="/movies" element={<Movies />} />
+          </Routes>
+        </Router>
+      </QueryClientProvider>
     </div>
   );
 }
