@@ -11,11 +11,14 @@ const MoviesList = () => {
     },
   });
 
-  console.log(query.data);
+  if (query.isLoading) {
+    return <h1>Loading</h1>;
+  }
+
   return (
     <div>
-      {query.data.movies.map((movie) => {
-        return <MovieCard movie={movie} />;
+      {query.data?.movies.map((movie) => {
+        return <MovieCard key={movie._id} movie={movie} />;
       })}
     </div>
   );
