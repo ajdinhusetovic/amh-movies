@@ -1,6 +1,7 @@
 const Movie = require('../models/movieModel');
 const asyncHandler = require('express-async-handler');
 const AppError = require('../utils/appError');
+const { s3Upload } = require('../s3');
 
 exports.getAllMovies = asyncHandler(async (req, res, next) => {
   const movies = await Movie.find().sort({ createdAt: -1 });
@@ -32,6 +33,8 @@ exports.getMovie = asyncHandler(async (req, res, next) => {
 
 exports.createMovie = asyncHandler(async (req, res, next) => {
   const { title } = req.body;
+  const file = req.file;
+  console.log(file);
 
   const movie = await Movie.findOne({ title });
 
@@ -39,11 +42,14 @@ exports.createMovie = asyncHandler(async (req, res, next) => {
     return next(new AppError('Movie with that name already exists', 409));
   }
 
+  const result = await s3Upload(file);
+
   const newMovie = await Movie.create({
     title: req.body.title,
     length: req.body.length,
     imdbRating: req.body.imdbRating,
     category: req.body.category,
+    imagePath: result.Location,
   });
 
   res.status(200).json({ status: 'success', data: newMovie });

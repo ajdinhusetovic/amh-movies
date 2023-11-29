@@ -7,7 +7,9 @@ const movieSchema = mongoose.Schema({
     required: [true, 'Movie must have a title'],
     minLength: [1, 'Movie title must be above 0 characters'],
   },
-  //   img
+  imagePath: {
+    type: String,
+  },
   length: {
     type: Number,
     required: [true, 'Movie must have length'],
