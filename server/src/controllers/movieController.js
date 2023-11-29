@@ -1,7 +1,7 @@
 const Movie = require('../models/movieModel');
 const asyncHandler = require('express-async-handler');
 const AppError = require('../utils/appError');
-const { s3Upload } = require('../s3');
+const { s3Upload, s3Delete } = require('../s3');
 
 exports.getAllMovies = asyncHandler(async (req, res, next) => {
   const movies = await Movie.find().sort({ createdAt: -1 });
@@ -46,6 +46,7 @@ exports.createMovie = asyncHandler(async (req, res, next) => {
 
   const newMovie = await Movie.create({
     title: req.body.title,
+    year: req.body.year,
     length: req.body.length,
     imdbRating: req.body.imdbRating,
     category: req.body.category,
@@ -57,7 +58,20 @@ exports.createMovie = asyncHandler(async (req, res, next) => {
 
 exports.deleteMovie = asyncHandler(async (req, res, next) => {
   const { slug } = req.params;
+  const movieData = await Movie.findOne({ slug });
+  const url = movieData.imagePath;
+
+  const parts = url.split('.com/');
+  let objectKey;
+  if (parts.length === 2) {
+    objectKey = parts[1];
+  } else {
+    console.error('Invalid S3 URL format');
+    return null;
+  }
+
   const movie = await Movie.deleteOne({ slug });
+  await s3Delete(objectKey);
 
   if (!movie) {
     return next(new AppError('No movie found with that ID', 404));
