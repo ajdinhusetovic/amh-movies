@@ -7,8 +7,13 @@ const movieSchema = mongoose.Schema({
     required: [true, 'Movie must have a title'],
     minLength: [1, 'Movie title must be above 0 characters'],
   },
+  year: {
+    type: String,
+    required: [true, 'Movie requires a year'],
+  },
   imagePath: {
     type: String,
+    required: [true, 'Movie requires image'],
   },
   length: {
     type: Number,
@@ -29,7 +34,7 @@ const movieSchema = mongoose.Schema({
   category: {
     type: String,
     required: [true, 'Movie must have a category'],
-    enum: ['action', 'comedy', 'horror', 'drama', 'animation', 'other'],
+    enum: ['Action', 'Comedy', 'Horror', 'Drama', 'Animation', 'Other'],
     default: 'other',
   },
   isWatched: {

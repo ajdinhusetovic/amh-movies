@@ -8,6 +8,7 @@ const CreateMovieForm = ({ toggleModal }) => {
   const [length, setLength] = useState(0);
   const [category, setCategory] = useState('other');
   const [imdbRating, setImdbRating] = useState(0);
+  const [year, setYear] = useState(0);
   const [file, setFile] = useState();
 
   const [errorMsg, setErrorMsg] = useState('');
@@ -28,6 +29,7 @@ const CreateMovieForm = ({ toggleModal }) => {
     const formData = new FormData();
 
     formData.append('title', title);
+    formData.append('year', year);
     formData.append('length', length);
     formData.append('category', category);
     formData.append('imdbRating', imdbRating);
@@ -67,6 +69,18 @@ const CreateMovieForm = ({ toggleModal }) => {
         </div>
 
         <div className="form-group">
+          <label htmlFor="year">Year</label>
+          <input
+            type="number"
+            placeholder="e.g. 2017"
+            id="year"
+            name="year"
+            value={year}
+            onChange={(e) => setYear(e.target.value)}
+          />
+        </div>
+
+        <div className="form-group">
           <label htmlFor="length">Length</label>
           <input
             type="number"
@@ -84,12 +98,12 @@ const CreateMovieForm = ({ toggleModal }) => {
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
-            <option value="action">Action</option>
-            <option value="comedy">Comedy</option>
-            <option value="drama">Drama</option>
-            <option value="horror">Horror</option>
-            <option value="animation">Animation</option>
-            <option value="other">Other</option>
+            <option value="Action">Action</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Drama">Drama</option>
+            <option value="Horror">Horror</option>
+            <option value="Animation">Animation</option>
+            <option value="Other">Other</option>
           </select>
         </div>
         <div className="form-group">
