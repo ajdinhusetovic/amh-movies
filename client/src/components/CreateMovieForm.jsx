@@ -8,6 +8,7 @@ const CreateMovieForm = ({ toggleModal }) => {
   const [length, setLength] = useState(0);
   const [category, setCategory] = useState('other');
   const [imdbRating, setImdbRating] = useState(0);
+  const [file, setFile] = useState();
 
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -24,12 +25,19 @@ const CreateMovieForm = ({ toggleModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const formData = new FormData();
+
+    formData.append('title', title);
+    formData.append('length', length);
+    formData.append('category', category);
+    formData.append('imdbRating', imdbRating);
+    formData.append('file', file);
+
     try {
-      await axios.post('http://localhost:3000/api/v1/movies', {
-        title,
-        length,
-        category,
-        imdbRating,
+      await axios.post('http://localhost:3000/api/v1/movies', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
       toast.success('Movie added successfully', {
         position: toast.POSITION.TOP_CENTER,
@@ -97,6 +105,10 @@ const CreateMovieForm = ({ toggleModal }) => {
             value={imdbRating}
             onChange={(e) => setImdbRating(e.target.value)}
           />
+        </div>
+        <div className="form-group">
+          <label htmlFor="movie-image">Movie image</label>
+          <input type="file" onChange={(e) => setFile(e.target.files[0])} />
         </div>
         {errorMsg && <p className="error-msg">{errorMsg}</p>}
         <button type="submit">Add movie</button>
