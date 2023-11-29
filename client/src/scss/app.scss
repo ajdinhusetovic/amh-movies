@@ -8,7 +8,8 @@
 body {
     height: 100vh;
     font-size: 16px;
-    font-family: config.$font-open-sans;
+    font-family: config.$font-montserrat;
+    font-weight: 600;
     color: config.$text-light;
     line-height: 1.5;
     background-color: config.$dark-color;
@@ -19,6 +20,7 @@ body {
     height: 150px;
     text-align: center;
     padding-top: 20px;
+    font-family: config.$font-open-sans;
 }
 
 .form-page {
@@ -32,7 +34,6 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: config.$lighter-dark;
         border-radius: 8px;
 
         .spinner {
@@ -172,6 +173,7 @@ body {
     max-height: 90%;
     overflow: auto;
     background-color: config.$lighter-dark;
+    margin-bottom: 40px;
 
     .close-button {
         float: right;
@@ -193,7 +195,39 @@ body {
         width: 90%;
         margin: 0 auto;
     }
-  }
+}
+
+.movies-list {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+}
+
+.movie-card {
+    width: 300px;
+    background-color: config.$lighter-dark;
+    border-radius: 6px;
+    padding-bottom: 10px;
+    
+    .card-span {
+        color: gold;
+        font-weight: 900;
+    }
+
+    h1, p {
+        padding: 0 0 4px 10px;
+    }
+
+    p {
+        font-size: 1.1rem;
+    }
+
+    img {
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+    }
+}
   
   @media screen and (max-width: 768px) {
     .modal {
