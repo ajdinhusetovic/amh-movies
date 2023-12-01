@@ -198,18 +198,41 @@ body {
 }
 
 .movies-list {
-    width: 95%;
-    margin: 0 auto;
-    display: flex;
+    max-width: 1300px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Three columns */
     gap: 20px;
+    margin: 0 0 50px 50px;
 }
 
 .movie-card {
     width: 300px;
-    height: 650px;
+    height: 700px;
     background-color: config.$lighter-dark;
     border-radius: 6px;
     padding-bottom: 10px;
+    box-shadow: 0 0 10px #ffd700; 
+    border: 6px solid darken(#ffd700, 5%);
+
+    .title {
+        font-family: config.$font-movie-title;
+        letter-spacing: 3px;
+        
+        h1 {
+            white-space: nowrap;
+            overflow: hidden; 
+            text-overflow: ellipsis;
+        }
+    }
+
+    #edit-btn {
+        padding: 6px;
+        margin: 8px 0 0 8px;
+        border: none;
+        font-size: 1rem;
+        border-radius: 6px;
+        width: 100px;
+    }
 
     .edit-form {
         height: inherit;
@@ -231,7 +254,7 @@ body {
         }
 
         .button-group {
-            margin-top: 15px;
+            margin-top: 20px;
             display: flex;
             gap: 20px;
 
@@ -240,28 +263,46 @@ body {
                 padding: 8px;
                 border: none;
                 border-radius: 8px;
+                font-size: 15px;
+                cursor: pointer;
+            }
+
+            #watched-button {
+                background-color: green;
+            }
+
+            #delete-button {
+                background-color: red;
             }
         }
 
         form {
-            margin-top: 10px;
+            margin-top: 30px;
             .form-group {
                 display: flex;
                 flex-direction: column;
+                width: 95%;
+                margin: 0 auto;
 
                 .input-wrapper {
+                    margin-top: 8px;
+                    display: flex;
                     input {
-                        padding: 4px;
+                        padding: 6px;
                         border: none;
                         border-radius: 8px;
+                        font-size: 14px;
                     }
 
                     button {
-                        padding: 4px;
+                        padding: 6px;
                         border: none;
                         border-radius: 8px;
                         margin-left: 5px;
                         width: 100px;
+                        background-color: green;
+                        font-size: 14px;
+                        cursor: pointer;
                     }
                 }
             }
@@ -279,11 +320,6 @@ body {
 
     p {
         font-size: 1.1rem;
-    }
-
-    img {
-        border-top-left-radius: 6px;
-        border-top-right-radius: 6px;
     }
 }
   
