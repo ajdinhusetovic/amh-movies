@@ -2,6 +2,8 @@ import axios from 'axios';
 import { useState } from 'react';
 
 const EditForm = ({ toggleOpen, movie }) => {
+  const [amhRating, setAmhRating] = useState(1);
+
   const handleWatched = async () => {
     try {
       const response = await axios.patch(
@@ -29,6 +31,18 @@ const EditForm = ({ toggleOpen, movie }) => {
     }
   };
 
+  const handleAddRating = async (e) => {
+    try {
+      e.preventDefault();
+      await axios.patch(`http://localhost:3000/api/v1/movies/${movie.slug}`, {
+        amhRating,
+      });
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="edit-form">
       <div className="image">
@@ -42,7 +56,7 @@ const EditForm = ({ toggleOpen, movie }) => {
           Delete Movie
         </button>
       </div>
-      <form>
+      <form onSubmit={handleAddRating}>
         <div className="form-group">
           <label htmlFor="amh-rating">AMH Rating</label>
           <div className="input-wrapper">
@@ -52,6 +66,7 @@ const EditForm = ({ toggleOpen, movie }) => {
               max="10"
               placeholder="e.g. 5.4"
               step="0.1"
+              onChange={(e) => setAmhRating(e.target.value)}
             />
             <button>Add rating</button>
           </div>
