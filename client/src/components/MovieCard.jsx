@@ -44,10 +44,20 @@ const MovieCard = ({ movie }) => {
               {movie.imdbRating}/10
             </p>
           </div>
+          <div className="amh-rating">
+            <p>
+              <span className="card-span">AMH Rating: </span>
+              {movie.amhRating}/10
+            </p>
+          </div>
           <div className="watch-status">
             <p>
               <span className="card-span">Watch status:</span>{' '}
-              {movie.isWatched ? <span>watched</span> : <span>not</span>}
+              {movie.isWatched ? (
+                <span id="watched"></span>
+              ) : (
+                <span id="not-watched"></span>
+              )}
             </p>
           </div>
           <button id="edit-btn" onClick={toggleOpen}>

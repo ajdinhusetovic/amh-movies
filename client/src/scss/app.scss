@@ -214,6 +214,33 @@ body {
     box-shadow: 0 0 10px #ffd700; 
     border: 6px solid darken(#ffd700, 5%);
 
+    .watch-status {
+
+        p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            #watched {
+                display: inline-block;
+                height: 15px;
+                width: 15px;
+                background-color: green;
+                border-radius: 50%;
+                box-shadow: 0 0 10px green;
+            }
+
+            #not-watched {
+                display: inline-block;
+                height: 15px;
+                width: 15px;
+                background-color: red;
+                border-radius: 50%;
+                box-shadow: 0 0 10px red;
+            }
+        }
+    }
+
     .title {
         font-family: config.$font-movie-title;
         letter-spacing: 3px;

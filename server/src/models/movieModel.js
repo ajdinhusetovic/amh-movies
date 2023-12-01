@@ -28,6 +28,7 @@ const movieSchema = mongoose.Schema({
   },
   amhRating: {
     type: Number,
+    default: 0,
     min: [1, 'Rating must be above or equal to 1'],
     max: [10, 'Rating must be below or equal to 10'],
   },
