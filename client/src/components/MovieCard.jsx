@@ -44,7 +44,15 @@ const MovieCard = ({ movie }) => {
               {movie.imdbRating}/10
             </p>
           </div>
-          <button onClick={toggleOpen}>Edit Details</button>
+          <div className="watch-status">
+            <p>
+              <span className="card-span">Watch status:</span>{' '}
+              {movie.isWatched ? <span>watched</span> : <span>not</span>}
+            </p>
+          </div>
+          <button id="edit-btn" onClick={toggleOpen}>
+            Edit Movie
+          </button>
         </>
       )}
       {isOpen && <EditForm toggleOpen={toggleOpen} movie={movie} />}
