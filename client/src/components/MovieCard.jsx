@@ -35,7 +35,7 @@ const MovieCard = ({ movie }) => {
           </div>
           <div className="length">
             <p>
-              <span className="card-span">Length: </span> {movie.length}
+              <span className="card-span">Length: </span> {movie.length} minutes
             </p>
           </div>
           <div className="imdb-rating">
