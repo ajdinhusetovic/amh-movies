@@ -207,7 +207,7 @@ body {
 
 .movie-card {
     width: 300px;
-    height: 700px;
+    height: 730px;
     background-color: config.$lighter-dark;
     border-radius: 6px;
     padding-bottom: 10px;
@@ -259,6 +259,12 @@ body {
         font-size: 1rem;
         border-radius: 6px;
         width: 100px;
+        background-color: #ffd700;
+        cursor: pointer;
+        
+        &:hover {
+            box-shadow: 0 0 15px red; 
+        }
     }
 
     .edit-form {
@@ -296,10 +302,18 @@ body {
 
             #watched-button {
                 background-color: green;
+
+                &:hover {
+                    box-shadow: 0 0 15px green;
+                }
             }
 
             #delete-button {
                 background-color: red;
+
+                &:hover {
+                    box-shadow: 0 0 15px red;
+                }
             }
         }
 
@@ -316,9 +330,16 @@ body {
                     display: flex;
                     input {
                         padding: 6px;
-                        border: none;
+                        border: 2px solid #ffd700;
+                        color: white;
                         border-radius: 8px;
                         font-size: 14px;
+                        background-color: transparent;
+
+                        &:focus {
+                            outline: none;
+                            box-shadow: 0 0 15px #ffd700;
+                        }
                     }
 
                     button {
@@ -330,6 +351,10 @@ body {
                         background-color: green;
                         font-size: 14px;
                         cursor: pointer;
+
+                        &:hover {
+                            box-shadow: 0 0 15px green;
+                        }
                     }
                 }
             }
