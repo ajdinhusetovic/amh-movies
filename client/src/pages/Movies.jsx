@@ -5,7 +5,6 @@ import '../scss/app.scss';
 import Modal from '../components/Modal';
 import CreateMovieForm from '../components/CreateMovieForm';
 import MoviesList from '../components/MoviesList';
-import FilterButtons from '../components/FilterButtons';
 
 const Test = () => {
   const [cookies, _] = useCookies(['access_token']);
@@ -31,11 +30,7 @@ const Test = () => {
       {!isModalOpen && (
         <div className="movies-list-wrapper">
           <div>
-            <MoviesList />
-          </div>
-          <div>
-            <button onClick={toggleModal}>Open Modal</button>
-            <FilterButtons />
+            <MoviesList toggleModal={toggleModal} />
           </div>
         </div>
       )}

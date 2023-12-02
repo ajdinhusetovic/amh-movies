@@ -98,12 +98,12 @@ const CreateMovieForm = ({ toggleModal }) => {
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
-            <option value="Action">Action</option>
-            <option value="Comedy">Comedy</option>
-            <option value="Drama">Drama</option>
-            <option value="Horror">Horror</option>
-            <option value="Animation">Animation</option>
-            <option value="Other">Other</option>
+            <option value="action">Action</option>
+            <option value="comedy">Comedy</option>
+            <option value="drama">Drama</option>
+            <option value="horror">Horror</option>
+            <option value="animation">Animation</option>
+            <option value="other">Other</option>
           </select>
         </div>
         <div className="form-group">

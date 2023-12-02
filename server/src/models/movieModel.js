@@ -35,7 +35,7 @@ const movieSchema = mongoose.Schema({
   category: {
     type: String,
     required: [true, 'Movie must have a category'],
-    enum: ['Action', 'Comedy', 'Horror', 'Drama', 'Animation', 'Other'],
+    enum: ['action', 'comedy', 'horror', 'drama', 'animation', 'other'],
     default: 'other',
   },
   isWatched: {

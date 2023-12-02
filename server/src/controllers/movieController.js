@@ -4,7 +4,7 @@ const AppError = require('../utils/appError');
 const { s3Upload, s3Delete } = require('../s3');
 
 exports.getAllMovies = asyncHandler(async (req, res, next) => {
-  const movies = await Movie.find().sort({ createdAt: -1 });
+  const movies = await Movie.find(req.query).sort({ createdAt: -1 });
 
   if (movies.length === 0) {
     return next(new AppError('No movies found', 404));
