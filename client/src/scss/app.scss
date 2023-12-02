@@ -205,11 +205,9 @@ body {
         display: flex;
     }
     .movies-list {
-        width: 90%;
-        display: flex;
-        flex-wrap: wrap;
-        // grid-template-columns: repeat(4, 1fr); /* Three columns */
-        gap: 20px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 30px;
         margin: 50px auto 50px auto;
     }
 }
