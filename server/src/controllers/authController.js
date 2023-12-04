@@ -59,6 +59,7 @@ exports.signIn = asyncHandler(async (req, res, next) => {
 });
 
 exports.protect = asyncHandler(async (req, res, next) => {
+  console.log(req.headers);
   let token;
   // 1) Get token and check if it's there
   if (
@@ -82,5 +83,6 @@ exports.protect = asyncHandler(async (req, res, next) => {
       new AppError('The user belonging to this token no longer exists.', 401),
     );
   }
+  req.user = freshUser;
   next();
 });

@@ -26,11 +26,16 @@ const movieSchema = mongoose.Schema({
     required: [true, 'Movie must have imdb rating'],
     min: [1, 'Rating must be 1 or equal'],
   },
+  numberOfRatings: {
+    type: Number,
+    default: 0,
+  },
   amhRating: {
     type: Number,
     default: 1,
     min: [1, 'Rating must be above or equal to 1'],
     max: [10, 'Rating must be below or equal to 10'],
+    set: (val) => Math.round(val * 10) / 10,
   },
   category: {
     type: String,

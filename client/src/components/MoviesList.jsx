@@ -53,7 +53,9 @@ const MoviesList = ({ toggleModal }) => {
   return (
     <div className="movies-list-wrapper">
       <div className="button-wrapper">
-        <button onClick={toggleModal}>Open Modal</button>
+        <button id="add-movie-button" onClick={toggleModal}>
+          Add movie
+        </button>
         <button onClick={() => handleCategory('action')}>Action</button>
         <button onClick={() => handleCategory('comedy')}>Comedy</button>
         <button onClick={() => handleCategory('drama')}>Drama</button>

@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 
 const EditForm = ({ toggleOpen, movie }) => {
   const [amhRating, setAmhRating] = useState(1);
+  const [cookies, _] = useCookies(['access_token']);
 
   const handleWatched = async () => {
     try {
@@ -34,9 +36,17 @@ const EditForm = ({ toggleOpen, movie }) => {
   const handleAddRating = async (e) => {
     try {
       e.preventDefault();
-      await axios.patch(`http://localhost:3000/api/v1/movies/${movie.slug}`, {
-        amhRating,
-      });
+      await axios.post(
+        `http://localhost:3000/api/v1/movies/${movie.slug}/ratings`,
+        {
+          rating: amhRating,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${cookies.access_token}`,
+          },
+        }
+      );
       window.location.reload();
     } catch (error) {
       console.log(error);
