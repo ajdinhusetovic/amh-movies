@@ -8,16 +8,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import Spinner from './Spinner';
 
 const MoviesList = ({ toggleModal }) => {
-  const [url, setUrl] = useState('http://localhost:3000/api/v1/movies');
+  const [url, setUrl] = useState(
+    'https://amh-movies-api.vercel.app/api/v1/movies'
+  );
   const [errorOccurred, setErrorOccurred] = useState(false);
 
   const handleCategory = (category) => {
-    const newUrl = `http://localhost:3000/api/v1/movies?category=${category}`;
+    const newUrl = `https://amh-movies-api.vercel.app/api/v1/movies?category=${category}`;
     setUrl(newUrl);
   };
 
   const handleWatched = (isWatched) => {
-    const newUrl = `http://localhost:3000/api/v1/movies?isWatched=${isWatched}`;
+    const newUrl = `https://amh-movies-api.vercel.app/api/v1/movies?isWatched=${isWatched}`;
     setUrl(newUrl);
   };
 
@@ -37,7 +39,7 @@ const MoviesList = ({ toggleModal }) => {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 3000,
       });
-      setUrl('http://localhost:3000/api/v1/movies');
+      setUrl('https://amh-movies-api.vercel.app/api/v1/movies');
     }
   }, [query.error, errorOccurred]);
 

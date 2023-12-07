@@ -50,11 +50,14 @@ const FormPage = () => {
     setRegisterLoading(true);
 
     try {
-      await axios.post('http://localhost:3000/api/v1/users/register', {
-        username: registerUsername,
-        password: registerPassword,
-        passwordConfirm,
-      });
+      await axios.post(
+        'https://amh-movies-api.vercel.app/api/v1/users/register',
+        {
+          username: registerUsername,
+          password: registerPassword,
+          passwordConfirm,
+        }
+      );
       setRegisterErrorMessage('');
       alert('Registration completed');
       setRegisterUsername('');
@@ -77,10 +80,13 @@ const FormPage = () => {
     setLoginLoading(true);
 
     try {
-      const res = await axios.post('http://localhost:3000/api/v1/users/login', {
-        username: loginUsername,
-        password: loginPassword,
-      });
+      const res = await axios.post(
+        'https://amh-movies-api.vercel.app/api/v1/users/login',
+        {
+          username: loginUsername,
+          password: loginPassword,
+        }
+      );
       setCookies('access_token', res.data.token);
       navigate('/movies');
       setLoginErrorMessage('');
