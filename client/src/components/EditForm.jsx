@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useCookies } from 'react-cookie';
+import { toast } from 'react-toastify';
 
 const EditForm = ({ toggleOpen, movie }) => {
   const [amhRating, setAmhRating] = useState(1);

@@ -471,3 +471,51 @@ body {
       padding: 8px;
     }
   }
+
+  @media (max-width: 575.98px) {
+
+    .modal {
+        width: 90%;
+        margin: 0 auto 30px auto;
+    }
+    .form-page {
+        flex-direction: column;
+        gap: 30px;
+        width: 95%;
+        margin: 0 auto 40px auto;
+
+        .login, .register {
+            height: 650px;
+            width: 95%;
+
+            h1 {
+                text-align: center;
+            }
+
+            form {
+                margin-top: 10px;
+
+                button {
+                    margin-top: 40px;
+                }
+            }
+        }
+
+    }
+
+    .movies-list-wrapper {
+        .button-wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 0 auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .movies-list {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+  }
