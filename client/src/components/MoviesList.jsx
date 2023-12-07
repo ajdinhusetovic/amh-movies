@@ -5,6 +5,7 @@ import MovieCard from './MovieCard';
 import '../scss/app.scss';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Spinner from './Spinner';
 
 const MoviesList = ({ toggleModal }) => {
   const [url, setUrl] = useState('http://localhost:3000/api/v1/movies');
@@ -46,32 +47,38 @@ const MoviesList = ({ toggleModal }) => {
     }
   }, [query.error, errorOccurred]);
 
-  if (query.isLoading) {
-    return <h1>Loading</h1>;
-  }
-
   return (
     <div className="movies-list-wrapper">
-      <div className="button-wrapper">
-        <button id="add-movie-button" onClick={toggleModal}>
-          Add movie
-        </button>
-        <button onClick={() => handleCategory('action')}>Action</button>
-        <button onClick={() => handleCategory('comedy')}>Comedy</button>
-        <button onClick={() => handleCategory('drama')}>Drama</button>
-        <button onClick={() => handleCategory('horror')}>Horror</button>
-        <button onClick={() => handleCategory('animation')}>Animation</button>
-        <button onClick={() => handleCategory('other')}>Other</button>
-        <button onClick={() => handleWatched(true)}>Watched</button>
-        <button onClick={() => setUrl('http://localhost:3000/api/v1/movies')}>
-          All
-        </button>
-      </div>
-      <div className="movies-list">
-        {query.data?.movies.map((movie) => {
-          return <MovieCard key={movie._id} movie={movie} />;
-        })}
-      </div>
+      {query.isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <div className="button-wrapper">
+            <button id="add-movie-button" onClick={toggleModal}>
+              Add movie
+            </button>
+            <button onClick={() => handleCategory('action')}>Action</button>
+            <button onClick={() => handleCategory('comedy')}>Comedy</button>
+            <button onClick={() => handleCategory('drama')}>Drama</button>
+            <button onClick={() => handleCategory('horror')}>Horror</button>
+            <button onClick={() => handleCategory('animation')}>
+              Animation
+            </button>
+            <button onClick={() => handleCategory('other')}>Other</button>
+            <button onClick={() => handleWatched(true)}>Watched</button>
+            <button
+              onClick={() => setUrl('http://localhost:3000/api/v1/movies')}
+            >
+              All
+            </button>
+          </div>
+          <div className="movies-list">
+            {query.data?.movies.map((movie) => {
+              return <MovieCard key={movie._id} movie={movie} />;
+            })}
+          </div>
+        </>
+      )}
     </div>
   );
 };
