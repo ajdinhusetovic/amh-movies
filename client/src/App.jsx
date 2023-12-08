@@ -5,25 +5,22 @@ import FormPage from './pages/FormPage';
 import Movies from './pages/Movies';
 import { ToastContainer } from 'react-toastify';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { SkeletonTheme } from 'react-loading-skeleton';
 
 function App() {
   const client = new QueryClient();
 
   return (
     <div className="App">
-      <SkeletonTheme baseColor="#666666" highlightColor="#525252">
-        <QueryClientProvider client={client}>
-          <Router>
-            <ToastContainer />
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<FormPage />} />
-              <Route path="/movies" element={<Movies />} />
-            </Routes>
-          </Router>
-        </QueryClientProvider>
-      </SkeletonTheme>
+      <QueryClientProvider client={client}>
+        <Router>
+          <ToastContainer />
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<FormPage />} />
+            <Route path="/movies" element={<Movies />} />
+          </Routes>
+        </Router>
+      </QueryClientProvider>
     </div>
   );
 }

@@ -10,7 +10,7 @@ const EditForm = ({ toggleOpen, movie }) => {
   const handleWatched = async () => {
     try {
       const response = await axios.patch(
-        `http://localhost:3000/api/v1/movies/${movie.slug}`,
+        `https://amh-movies-api.onrender.com/api/v1/movies/${movie.slug}`,
         {
           isWatched: true,
         }
@@ -25,7 +25,7 @@ const EditForm = ({ toggleOpen, movie }) => {
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:3000/api/v1/movies/${movie.slug}`
+        `https://amh-movies-api.onrender.com/api/v1/movies/${movie.slug}`
       );
       console.log(response);
       window.location.reload();
@@ -38,7 +38,7 @@ const EditForm = ({ toggleOpen, movie }) => {
     try {
       e.preventDefault();
       await axios.post(
-        `http://localhost:3000/api/v1/movies/${movie.slug}/ratings`,
+        `https://amh-movies-api.onrender.com/api/v1/movies/${movie.slug}/ratings`,
         {
           rating: amhRating,
         },

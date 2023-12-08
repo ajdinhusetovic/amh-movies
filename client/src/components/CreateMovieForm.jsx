@@ -36,11 +36,15 @@ const CreateMovieForm = ({ toggleModal }) => {
     formData.append('file', file);
 
     try {
-      await axios.post('http://localhost:3000/api/v1/movies', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      await axios.post(
+        'https://amh-movies-api.onrender.com/api/v1/movies',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
       toast.success('Movie added successfully', {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 3000,

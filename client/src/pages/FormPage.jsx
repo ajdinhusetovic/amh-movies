@@ -51,7 +51,7 @@ const FormPage = () => {
 
     try {
       await axios.post(
-        'https://amh-movies-api.vercel.app/api/v1/users/register',
+        'https://amh-movies-api.onrender.com/api/v1/users/register',
         {
           username: registerUsername,
           password: registerPassword,
@@ -81,7 +81,7 @@ const FormPage = () => {
 
     try {
       const res = await axios.post(
-        'https://amh-movies-api.vercel.app/api/v1/users/login',
+        'https://amh-movies-api.onrender.com/api/v1/users/login',
         {
           username: loginUsername,
           password: loginPassword,
