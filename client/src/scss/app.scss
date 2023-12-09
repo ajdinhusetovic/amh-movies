@@ -340,6 +340,11 @@ body {
             border-radius: 8px;
             cursor: pointer;
             color: red;
+            transition: transform 0.3s;
+
+            &:hover {
+                transform: scale(1.5);
+            }
         }
 
         .button-group {
