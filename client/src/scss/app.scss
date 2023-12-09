@@ -469,15 +469,15 @@ body {
   }
   
   
-  @media screen and (max-width: 768px) {
-    .modal {
-      max-width: 95%;
-      max-height: 95%;
-      padding: 8px;
-    }
-  }
+// @media screen and (min-width: 768px) {
+//     .modal {
+//       max-width: 95%;
+//       max-height: 95%;
+//       padding: 8px;
+//     }
+// }
 
-  @media (max-width: 575.98px) {
+@media (max-width: 640px) {
 
     .modal {
         width: 90%;
@@ -523,4 +523,93 @@ body {
             flex-direction: column;
         }
     }
-  }
+}
+
+@media screen and (max-width: 768px) and (min-width: 641px) {
+    .movies-list-wrapper {
+        .button-wrapper {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 0 auto;
+            align-items: center;
+            justify-content: center;
+        }
+        .movies-list {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+    .movies-list-wrapper {
+        .button-wrapper {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 0 auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .movies-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 993px) {
+    .movies-list-wrapper {
+        .button-wrapper {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 16px;
+            margin: 0 auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .movies-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+@media screen and (min-width: 1201px) and (max-width: 1500px){
+    .movies-list-wrapper {
+        .button-wrapper {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 16px;
+            margin: 0 auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .movies-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+
+@media screen and (min-width: 1501px) and (max-width: 1900px){
+    .movies-list-wrapper {
+        .button-wrapper {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 16px;
+            margin: 0 auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .movies-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+}
