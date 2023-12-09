@@ -77,6 +77,7 @@ const CreateMovieForm = ({ toggleModal }) => {
           <input
             type="number"
             placeholder="e.g. 2017"
+            min="1900"
             id="year"
             name="year"
             value={year}
