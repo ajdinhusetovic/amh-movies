@@ -156,7 +156,7 @@ const FormPage = () => {
           <div className="form-group">
             <label htmlFor="passwordConfirm">Confirm Password</label>
             <input
-              type="passwordConfirm"
+              type="password"
               id="password-confirm"
               name="passwordConfirm"
               onChange={(e) => setPasswordConfirm(e.target.value)}
