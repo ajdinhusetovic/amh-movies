@@ -14,13 +14,17 @@ router.use('/:slug/ratings', ratingRouter);
 
 router
   .route('/')
-  .get(movieController.getAllMovies)
-  .post(upload.single('file'), movieController.createMovie);
+  .get(authController.protect, movieController.getAllMovies)
+  .post(
+    upload.single('file'),
+    authController.protect,
+    movieController.createMovie,
+  );
 
 router
   .route('/:slug')
-  .get(movieController.getMovie)
-  .patch(movieController.updateMovie)
-  .delete(movieController.deleteMovie);
+  .get(authController.protect, movieController.getMovie)
+  .patch(authController.protect, movieController.updateMovie)
+  .delete(authController.protect, movieController.deleteMovie);
 
 module.exports = router;
