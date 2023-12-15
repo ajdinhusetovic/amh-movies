@@ -10,6 +10,7 @@ const CreateMovieForm = ({ toggleModal }) => {
   const [imdbRating, setImdbRating] = useState(0);
   const [year, setYear] = useState(0);
   const [file, setFile] = useState();
+  const [cookies, _] = useCookies(['access_token']);
 
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -42,6 +43,7 @@ const CreateMovieForm = ({ toggleModal }) => {
         {
           headers: {
             'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${cookies.access_token}`,
           },
         }
       );

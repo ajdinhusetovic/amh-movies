@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
 import MovieCard from './MovieCard';
 import '../scss/app.scss';
 import { toast } from 'react-toastify';
@@ -8,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Spinner from './Spinner';
 
 const MoviesList = ({ toggleModal }) => {
+  const [cookies, _] = useCookies(['access_token']);
   const [url, setUrl] = useState(
     'https://amh-movies-api.onrender.com/api/v1/movies'
   );
@@ -26,7 +28,11 @@ const MoviesList = ({ toggleModal }) => {
   const query = useQuery({
     queryKey: ['movies', url],
     queryFn: async () => {
-      const response = await axios.get(url);
+      const response = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${cookies.access_token}`,
+        },
+      });
       return response.data;
     },
     retry: 0,

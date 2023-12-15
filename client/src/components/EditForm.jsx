@@ -13,6 +13,11 @@ const EditForm = ({ toggleOpen, movie }) => {
         `https://amh-movies-api.onrender.com/api/v1/movies/${movie.slug}`,
         {
           isWatched: true,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${cookies.access_token}`,
+          },
         }
       );
       console.log(response);
@@ -25,7 +30,12 @@ const EditForm = ({ toggleOpen, movie }) => {
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        `https://amh-movies-api.onrender.com/api/v1/movies/${movie.slug}`
+        `https://amh-movies-api.onrender.com/api/v1/movies/${movie.slug}`,
+        {
+          headers: {
+            Authorization: `Bearer ${cookies.access_token}`,
+          },
+        }
       );
       console.log(response);
       window.location.reload();
