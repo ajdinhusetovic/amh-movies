@@ -47,7 +47,7 @@ const MovieCard = ({ movie }) => {
           <div className="amh-rating">
             <p>
               <span className="card-span">AMH Rating: </span>
-              {movie.amhRating}/10
+              {movie.amhRating}/10 ({movie.numberOfRatings})
             </p>
           </div>
           <div className="watch-status">
